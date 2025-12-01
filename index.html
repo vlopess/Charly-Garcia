@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charly García: A Trajetória</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Fontes: Inter para modernidade e Playfair para elegância -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --accent-red: #cc0000; /* Vermelho Say No More */
+            --gray-light: #f3f4f6;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Títulos Gigantes Estilo Poster */
+        h1, h2 {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+        }
+        
+        .serif-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Container de Slides */
+        #slides-container {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        
+        /* Esconder Scrollbar */
+        #slides-container::-webkit-scrollbar { display: none; }
+        #slides-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Slide Individual */
+        .slide {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4vw;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Elementos Visuais */
+        .number-indicator {
+            position: absolute;
+            top: 4vw;
+            left: 4vw;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-red);
+        }
+
+        .vertical-line {
+            width: 1px;
+            height: 100px;
+            background-color: var(--accent-red);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* Botão de Navegação */
+        .nav-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: black;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 50;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: none;
+        }
+        .nav-btn:hover { transform: scale(1.1); background: var(--accent-red); }
+
+        /* Barra de Progresso */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: var(--accent-red);
+            width: 0%;
+            z-index: 100;
+            transition: width 0.3s;
+        }
+
+        /* Chart Container */
+        .chart-box {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <button class="nav-btn" onclick="nextSlide()" title="Próximo Slide">↓</button>
+
+    <div id="slides-container">
+
+        <section class="slide">
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-8xl md:text-9xl font-black text-black mb-6">
+                        Charly<br><span class="text-red-600">García</span>
+                    </h1>
+                    <div class="h-2 w-32 bg-black mb-6"></div>
+                    <p class="text-xl text-gray-600 max-w-md serif-text italic">
+                        Por Victor Lopes para LET 105 - Espanhol 2025.2
+                    </p>
+                </div>
+                <div class="hidden md:flex justify-end">
+                    <div class="w-64 h-96 border-4 border-black relative">
+                        <div class="absolute -top-4 -left-4 w-full h-full bg-red-100 -z-10"></div>
+                        <div class="absolute bottom-4 right-4 text-9xl font-black opacity-5">SNM</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. INTRODUÇÃO -->
+        <section class="slide bg-gray-50">
+            <div class="number-indicator">01. INTRODUÇÃO</div>
+            <div class="max-w-4xl">
+                <h2 class="text-5xl font-bold mb-8">Quem é a Personalidade?</h2>
+                <div class="grid md:grid-cols-2 gap-12 text-lg leading-relaxed text-gray-700">
+                    <div>
+                        <p class="mb-6"><strong class="text-black">Carlos Alberto García</strong> (Buenos Aires, 1951) é a figura mais importante do Rock Argentino.</p>
+                        <p>Prodígio do piano clássico aos 5 anos, tornou-se o "antena" que captou e traduziu os sentimentos da sociedade argentina através de ditaduras, crises e democracias.</p>
+                    </div>
+                    <div>
+                        <ul class="space-y-4 border-l-2 border-red-600 pl-6">
+                            <li><span class="font-bold text-black">Profissão:</span> Músico, Compositor, Produtor.</li>
+                            <li><span class="font-bold text-black">Habilidade Única:</span> Ouvido Absoluto.</li>
+                            <li><span class="font-bold text-black">Impacto:</span> Mudou o rock de língua espanhola para sempre.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TIMELINE: SUI GENERIS -->
+        <section class="slide">
+            <div class="number-indicator">02. FASE 1</div>
+            <div class="max-w-5xl w-full grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-6xl font-black text-gray-200">1972</span>
+                    <h2 class="text-6xl font-bold text-black mb-2 mt-[-20px]">Sui Generis</h2>
+                    <p class="text-red-600 font-bold uppercase tracking-widest text-sm mb-8">Adolescência & Folk</p>
+                    <p class="text-xl serif-text text-gray-600 mb-6">
+                        "O fim da inocência argentina."
+                    </p>
+                    <p class="text-gray-800 leading-relaxed">
+                        Duo acústico com Nito Mestre. Suas letras falavam sobre a escola, o serviço militar e a necessidade de amor. Foi a primeira banda de rock argentina a se tornar massiva.
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-8 h-full flex flex-col justify-center">
+                    <h3 class="font-bold mb-4">Obras Principais</h3>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="border-b py-2">💿 Vida (1972)</li>
+                        <li class="border-b py-2">💿 Confesiones de Invierno (1973)</li>
+                    </ul>
+                    <div class="mt-8">
+                        <span class="text-xs font-bold uppercase text-gray-400">Estilo Musical</span>
+                        <div class="w-full bg-gray-300 h-2 mt-2 rounded-full overflow-hidden">
+                            <div class="bg-red-600 h-full" style="width: 20%"></div>
+                        </div>
+                        <span class="text-xs text-right block mt-1">Complexidade Baixa / Emoção Alta</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. TIMELINE: LA MÁQUINA -->
+        <section class="slide bg-gray-50">
+            <div class="number-indicator">03. FASE 2</div>
+            <div class="max-w-5xl w-full grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 bg-white border border-gray-200 p-8 h-full flex flex-col justify-center shadow-lg">
+                    <h3 class="font-bold mb-4">Contexto Político</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Início da ditadura mais sangrenta da Argentina (1976). A censura era brutal.
+                    </p>
+                    <div class="p-4 bg-red-50 text-red-900 text-sm italic">
+                        "Que se pode fazer, além de ver filmes?"
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <span class="text-6xl font-black text-gray-300">1976</span>
+                    <h2 class="text-5xl md:text-6xl font-bold text-black mb-2 mt-[-20px] leading-tight">La Máquina de Hacer Pájaros</h2>
+                    <p class="text-red-600 font-bold uppercase tracking-widest text-sm mb-8">Rock Progressivo</p>
+                    <p class="text-gray-800 leading-relaxed">
+                        Para sobreviver à censura, Charly criou uma banda de rock sinfônico complexo (estilo Genesis/Yes). As letras eram cheias de metáforas que os censores militares não entendiam, mas o povo sim.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TIMELINE: SERÚ GIRÁN -->
+        <section class="slide">
+            <div class="number-indicator">04. FASE 3</div>
+            <div class="max-w-5xl w-full text-center">
+                <span class="text-red-600 font-bold uppercase tracking-widest text-sm">1978 - 1982</span>
+                <h2 class="text-7xl md:text-9xl font-black text-black mb-6">Serú Girán</h2>
+                <p class="text-2xl serif-text italic text-gray-500 mb-12">"Os Beatles Argentinos"</p>
+                
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="border-t-4 border-black pt-4">
+                        <h3 class="font-bold text-xl mb-2">Popularidade</h3>
+                        <p class="text-sm text-gray-600">A banda que uniu todas as classes sociais. Lotaram estádios de futebol, algo inédito.</p>
+                    </div>
+                    <div class="border-t-4 border-red-600 pt-4">
+                        <h3 class="font-bold text-xl mb-2">Resistência</h3>
+                        <p class="text-sm text-gray-600">Canções como "Canción de Alicia en el País" criticavam a realidade do país sob metáforas de Alice no País das Maravilhas.</p>
+                    </div>
+                    <div class="border-t-4 border-black pt-4">
+                        <h3 class="font-bold text-xl mb-2">Membros</h3>
+                        <p class="text-sm text-gray-600">Charly García, David Lebón, Pedro Aznar e Oscar Moro. Um supergrupo de virtuosos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. TIMELINE: SOLO 80s -->
+        <section class="slide bg-black text-white">
+            <div class="number-indicator text-white">05. FASE 4</div>
+            <div class="max-w-5xl w-full grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-6xl font-black text-gray-700">1983</span>
+                    <h2 class="text-6xl font-bold text-white mb-2 mt-[-20px]">Carreira Solo</h2>
+                    <p class="text-red-500 font-bold uppercase tracking-widest text-sm mb-8">Modernidade & New Wave</p>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        Com a volta da democracia, Charly viaja para Nova York e volta "moderno". Corta o cabelo, usa baterias eletrônicas e lança <strong>"Clics Modernos"</strong>.
+                    </p>
+                    <p class="text-gray-400 mt-4 text-sm">
+                        Deixou o protesto de lado para celebrar a liberdade e a dança.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-red-600 blur-3xl opacity-20"></div>
+                    <div class="relative border-2 border-white p-8">
+                        <h3 class="text-4xl font-black mb-2">CLICS<br>MODERNOS</h3>
+                        <div class="h-1 w-full bg-white mb-4"></div>
+                        <p class="font-mono text-sm">O álbum que definiu os anos 80 na América Latina.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. TIMELINE: SAY NO MORE -->
+        <section class="slide">
+            <div class="number-indicator">06. FASE 5</div>
+            <div class="max-w-4xl w-full">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-16 w-16 bg-red-600 flex items-center justify-center text-white font-black text-xl">SNM</div>
+                    <h2 class="text-6xl font-black">Say No More</h2>
+                </div>
+                <p class="text-gray-600 text-xl serif-text italic mb-8 border-l-4 border-red-600 pl-6">
+                    1996 - Presente: A Era do Caos
+                </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <p class="text-gray-800">
+                        Charly adota o conceito "Say No More". A música torna-se experimental, "suja" e caótica propositalmente. Sua vida pessoal torna-se um escândalo midiático constante, mas sua aura de gênio intocável cresce.
+                    </p>
+                    <div class="bg-gray-100 p-6 rounded">
+                        <p class="font-bold mb-2">O Conceito:</p>
+                        <p class="text-sm text-gray-600">A beleza do imperfeito. Gravar o momento, o erro, a emoção crua, em vez da técnica perfeita.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. ANÁLISE GRÁFICA -->
+        <section class="slide bg-gray-50">
+            <div class="number-indicator">07. ANÁLISE</div>
+            <div class="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">A Evolução do Estilo</h2>
+                    <p class="text-gray-600 mb-8">
+                        Este gráfico compara os atributos das quatro fases principais de Charly García. Note como a <strong class="text-red-600">Rebeldia</strong> cresce enquanto a <strong class="text-black">Complexidade</strong> varia.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="updateChart(0)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">Sui Generis</button>
+                        <button onclick="updateChart(1)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">La Máquina</button>
+                        <button onclick="updateChart(2)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">Serú Girán</button>
+                        <button onclick="updateChart(3)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">Solo 80s</button>
+                    </div>
+                </div>
+                <div class="chart-box bg-white p-4 shadow-xl border border-gray-100">
+                    <canvas id="evolutionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. BRASIL -->
+        <section class="slide">
+            <div class="number-indicator">08. BRASIL</div>
+            <div class="max-w-5xl w-full">
+                <h2 class="text-5xl font-bold mb-12 text-center">A Conexão Brasileira 🇧🇷</h2>
+                
+                <div class="grid md:grid-cols-2 gap-0 border border-gray-200">
+                    <!-- Paralamas -->
+                    <div class="p-12 border-b md:border-b-0 md:border-r border-gray-200 hover:bg-gray-50 transition">
+                        <h3 class="text-2xl font-bold mb-4">Paralamas do Sucesso</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Herbert Vianna foi o grande amigo de Charly no Brasil. Gravaram juntos "Rap de las Hormigas". Os Paralamas foram responsáveis por tocar Charly nas rádios brasileiras nos anos 80.
+                        </p>
+                    </div>
+
+                    <!-- Gilberto Gil -->
+                    <div class="p-12 hover:bg-gray-50 transition">
+                        <h3 class="text-2xl font-bold mb-4">O Paralelo com Gil</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Charly é frequentemente comparado a Gilberto Gil.
+                        </p>
+                        <ul class="text-sm text-gray-500 list-disc pl-5">
+                            <li>Ambos foram figuras centrais contra ditaduras.</li>
+                            <li>Ambos misturaram raízes locais com pop internacional.</li>
+                            <li>Ambos são "Ministros da Cultura" não-oficiais de seus povos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. REFERÊNCIAS -->
+        <section class="slide bg-black text-white">
+            <div class="max-w-4xl w-full">
+                <h2 class="text-4xl font-bold mb-8 text-white">Conclusão & Fontes</h2>
+                
+                <div class="mb-12 border-l-4 border-red-600 pl-6">
+                    <p class="text-xl serif-text italic text-gray-300">
+                        "Charly García não é apenas um músico, é um sobrevivente que narrou a história de um país inteiro através de canções."
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 text-sm font-mono text-gray-400">
+                    <div>
+                        <h4 class="text-white font-bold mb-4 border-b border-gray-700 pb-2">DISCOGRAFIA</h4>
+                        <ul class="space-y-2">
+                            <li>GARCÍA, Charly. <em>Clics Modernos</em>. [S.l.]: SG Discos, 1983.</li>
+                            <li>SUI GENERIS. <em>Vida</em>. Buenos Aires: Talent, 1972.</li>
+                            <li>SERÚ GIRÁN. <em>Bicicleta</em>. Buenos Aires: SG, 1980.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-4 border-b border-gray-700 pb-2">BIBLIOGRAFIA (ABNT)</h4>
+                        <ul class="space-y-2">
+                            <li>MARCHI, Sergio. <em>No digas nada: una vida de Charly García</em>. Buenos Aires: Sudamericana, 1997.</li>
+                            <li>VIANNA, Herbert. <em>Paralamas e o Rock Argentino</em>. MTV Brasil, 2002.</li>
+                            <li>ROLLING STONE. <em>100 mejores canciones del rock argentino</em>. 2002.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- NAVEGAÇÃO ---
+        const container = document.getElementById('slides-container');
+        const progressBar = document.getElementById('progressBar');
+        
+        function nextSlide() {
+            const h = window.innerHeight;
+            const current = Math.round(container.scrollTop / h);
+            // Vai para o próximo, ou volta ao topo se for o último
+            const target = (current + 1) * h;
+            
+            // Se já estiver no fim (margem de erro pequena), volta ao inicio
+            if (container.scrollTop >= (container.scrollHeight - h - 10)) {
+                container.scrollTo(0, 0);
+            } else {
+                container.scrollTo(0, target);
+            }
+        }
+
+        // Atualizar barra de progresso
+        container.addEventListener('scroll', () => {
+            const scroll = container.scrollTop;
+            const height = container.scrollHeight - window.innerHeight;
+            const scrolled = (scroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+        });
+
+        // --- GRÁFICO ---
+        const chartData = [
+            { label: 'Sui Generis', data: [90, 20, 30, 90] }, // Pop, Complex, Rebel, Lyric
+            { label: 'La Máquina', data: [40, 95, 50, 70] },
+            { label: 'Serú Girán', data: [95, 80, 70, 80] },
+            { label: 'Solo 80s', data: [100, 60, 80, 70] }
+        ];
+
+        let myChart;
+
+        function initChart() {
+            const ctx = document.getElementById('evolutionChart').getContext('2d');
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            
+            myChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Popularidade', 'Complexidade', 'Rebeldia', 'Poesia'],
+                    datasets: [{
+                        label: 'Sui Generis',
+                        data: chartData[0].data,
+                        backgroundColor: 'rgba(204, 0, 0, 0.2)',
+                        borderColor: '#cc0000',
+                        pointBackgroundColor: '#cc0000',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#eee' },
+                            grid: { color: '#eee' },
+                            pointLabels: { font: { size: 12, weight: 'bold' }, color: '#000' },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: { legend: { display: true } }
+                }
+            });
+        }
+
+        function updateChart(index) {
+            myChart.data.datasets[0].data = chartData[index].data;
+            myChart.data.datasets[0].label = chartData[index].label;
+            myChart.update();
+        }
+
+        window.onload = initChart;
+
+        // Teclado
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "ArrowDown" || e.key === "ArrowRight") nextSlide();
+        });
+
+    </script>
+</body>
+</html>
