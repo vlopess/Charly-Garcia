@@ -50,7 +50,7 @@
 
         /* Slide Individual */
         .slide {
-            height: 100vh;
+            height: 130vh;
             width: 100%;
             scroll-snap-align: start;
             position: relative;
@@ -80,7 +80,6 @@
             display: block;
         }
 
-        /* Botão de Navegação */
         .nav-btn {
             position: fixed;
             bottom: 30px;
@@ -102,7 +101,6 @@
         }
         .nav-btn:hover { transform: scale(1.1); background: var(--accent-red); }
 
-        /* Barra de Progresso */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -122,6 +120,14 @@
             max-width: 600px;
         }
 
+        .background-clip {
+            width: 100%;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
     </style>
 </head>
 <body>
@@ -133,27 +139,30 @@
     <div id="slides-container">
 
         <section class="slide">
-            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <video autoplay loop muted playsinline class="background-clip">
+                <source src="assets/intro.mp4" type="video/mp4">
+            </video>
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
                 <div>
                     <h1 class="text-8xl md:text-9xl font-black text-black mb-6">
                         Charly<br><span class="text-red-600">García</span>
                     </h1>
                     <div class="h-2 w-32 bg-black mb-6"></div>
-                    <p class="text-xl text-gray-600 max-w-md serif-text italic">
-                        Por Victor Lopes para LET 105 - Espanhol 2025.2
+                    <p class="text-xl text-white max-w-md serif-text">
+                        Por Victor Lopes para LET105 - Espanhol 2025.2
                     </p>
                 </div>
-                <div class="hidden md:flex justify-end">
-                    <div class="w-64 h-96 border-4 border-black relative">
-                        <div class="absolute -top-4 -left-4 w-full h-full bg-red-100 -z-10"></div>
-                        <div class="absolute bottom-4 right-4 text-9xl font-black opacity-5">SNM</div>
-                    </div>
-                </div>
+<!--                <div class="hidden md:flex justify-end">-->
+<!--                    <div class="w-64 h-96 border-4 border-black relative">-->
+<!--                        <div class="absolute -top-4 -left-4 w-full h-full bg-red-100 -z-10"></div>-->
+<!--                        <div class="absolute bottom-4 right-4 text-9xl font-black opacity-5">SNM</div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </section>
 
         <!-- 2. INTRODUÇÃO -->
-        <section class="slide bg-gray-50">
+        <section class="slide bg-gray-50" style="padding-right: 0;">
             <div class="number-indicator">01. INTRODUÇÃO</div>
             <div class="max-w-4xl">
                 <h2 class="text-5xl font-bold mb-8">Quem é a Personalidade?</h2>
@@ -171,6 +180,7 @@
                     </div>
                 </div>
             </div>
+            <img src="assets/charly.png" alt="charly"/>
         </section>
 
         <!-- 3. TIMELINE: SUI GENERIS -->
@@ -188,19 +198,8 @@
                         Duo acústico com Nito Mestre. Suas letras falavam sobre a escola, o serviço militar e a necessidade de amor. Foi a primeira banda de rock argentina a se tornar massiva.
                     </p>
                 </div>
-                <div class="bg-gray-100 p-8 h-full flex flex-col justify-center">
-                    <h3 class="font-bold mb-4">Obras Principais</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="border-b py-2">💿 Vida (1972)</li>
-                        <li class="border-b py-2">💿 Confesiones de Invierno (1973)</li>
-                    </ul>
-                    <div class="mt-8">
-                        <span class="text-xs font-bold uppercase text-gray-400">Estilo Musical</span>
-                        <div class="w-full bg-gray-300 h-2 mt-2 rounded-full overflow-hidden">
-                            <div class="bg-red-600 h-full" style="width: 20%"></div>
-                        </div>
-                        <span class="text-xs text-right block mt-1">Complexidade Baixa / Emoção Alta</span>
-                    </div>
+                <div class="bg-gray-100 p-8 h-full flex flex-col justify-center" style="margin-bottom: 60%;">
+                    <img src="assets/suigeneris.jpg" alt="sui generis">
                 </div>
             </div>
         </section>
@@ -232,23 +231,24 @@
         <!-- 5. TIMELINE: SERÚ GIRÁN -->
         <section class="slide">
             <div class="number-indicator">04. FASE 3</div>
+            <img src="assets/serugiran.webp" alt="SERÚ GIRÁN" class="background-clip" style="height: 100%;">
             <div class="max-w-5xl w-full text-center">
-                <span class="text-red-600 font-bold uppercase tracking-widest text-sm">1978 - 1982</span>
-                <h2 class="text-7xl md:text-9xl font-black text-black mb-6">Serú Girán</h2>
-                <p class="text-2xl serif-text italic text-gray-500 mb-12">"Os Beatles Argentinos"</p>
+                <span class="bg-red-600 text-white font-bold uppercase tracking-widest text-sm">1978 - 1982</span>
+                <h2 class="text-7xl md:text-9xl font-black text-white mb-6">Serú Girán</h2>
+                <p class="text-2xl serif-text italic text-red-600 mb-12">"Os Beatles Argentinos"</p>
                 
                 <div class="grid md:grid-cols-3 gap-8 text-left">
                     <div class="border-t-4 border-black pt-4">
-                        <h3 class="font-bold text-xl mb-2">Popularidade</h3>
-                        <p class="text-sm text-gray-600">A banda que uniu todas as classes sociais. Lotaram estádios de futebol, algo inédito.</p>
+                        <h3 class="font-bold text-xl text-white mb-2">Popularidade</h3>
+                        <p class="text-sm text-white">A banda que uniu todas as classes sociais. Lotaram estádios de futebol, algo inédito.</p>
                     </div>
                     <div class="border-t-4 border-red-600 pt-4">
-                        <h3 class="font-bold text-xl mb-2">Resistência</h3>
-                        <p class="text-sm text-gray-600">Canções como "Canción de Alicia en el País" criticavam a realidade do país sob metáforas de Alice no País das Maravilhas.</p>
+                        <h3 class="font-bold text-xl text-white mb-2">Resistência</h3>
+                        <p class="text-sm text-white">Canções como "Canción de Alicia en el País" criticavam a realidade do país sob metáforas de Alice no País das Maravilhas.</p>
                     </div>
                     <div class="border-t-4 border-black pt-4">
-                        <h3 class="font-bold text-xl mb-2">Membros</h3>
-                        <p class="text-sm text-gray-600">Charly García, David Lebón, Pedro Aznar e Oscar Moro. Um supergrupo de virtuosos.</p>
+                        <h3 class="font-bold text-xl text-white mb-2">Membros</h3>
+                        <p class="text-sm text-white">Charly García, David Lebón, Pedro Aznar e Oscar Moro. Um supergrupo de virtuosos.</p>
                     </div>
                 </div>
             </div>
@@ -303,34 +303,11 @@
             </div>
         </section>
 
-        <!-- 8. ANÁLISE GRÁFICA -->
-        <section class="slide bg-gray-50">
-            <div class="number-indicator">07. ANÁLISE</div>
-            <div class="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">A Evolução do Estilo</h2>
-                    <p class="text-gray-600 mb-8">
-                        Este gráfico compara os atributos das quatro fases principais de Charly García. Note como a <strong class="text-red-600">Rebeldia</strong> cresce enquanto a <strong class="text-black">Complexidade</strong> varia.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="updateChart(0)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">Sui Generis</button>
-                        <button onclick="updateChart(1)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">La Máquina</button>
-                        <button onclick="updateChart(2)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">Serú Girán</button>
-                        <button onclick="updateChart(3)" class="px-4 py-2 border border-black hover:bg-black hover:text-white transition text-sm">Solo 80s</button>
-                    </div>
-                </div>
-                <div class="chart-box bg-white p-4 shadow-xl border border-gray-100">
-                    <canvas id="evolutionChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. BRASIL -->
+        <!-- 8. BRASIL -->
         <section class="slide">
-            <div class="number-indicator">08. BRASIL</div>
+            <div class="number-indicator">07. BRASIL</div>
             <div class="max-w-5xl w-full">
-                <h2 class="text-5xl font-bold mb-12 text-center">A Conexão Brasileira 🇧🇷</h2>
+                <h2 class="text-5xl font-bold mb-12 text-center">A Conexão Brasileira 🇧🇷 🤝 🇦🇷 </h2>
                 
                 <div class="grid md:grid-cols-2 gap-0 border border-gray-200">
                     <!-- Paralamas -->
