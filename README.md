@@ -1,2 +1,2 @@
-# Charly-Garc-a
+# Charly-García
 Apresentação Web Slide  de Charly García
